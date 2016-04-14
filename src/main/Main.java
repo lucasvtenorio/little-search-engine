@@ -3,6 +3,7 @@ package main;
 import controller.Indexer;
 import controller.SearchConfiguration;
 import org.apache.lucene.queryparser.classic.ParseException;
+import view.Reporter;
 import view.SearchFrame;
 
 import javax.swing.*;
@@ -36,6 +37,9 @@ public class Main {
       new SearchFrame("Stemming", stemmingConfiguration).setVisible(true);
       new SearchFrame("StopWord+Stemming", completeConfiguration).setVisible(true);
     });
+
+    Reporter reporter = new Reporter(defaultConfiguration);
+    reporter.writeReport("the company reports");
 
 //    SearchConfiguration configuration = SearchConfiguration.getDefaultConfiguration();
 //

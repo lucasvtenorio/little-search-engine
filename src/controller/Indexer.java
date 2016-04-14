@@ -15,7 +15,8 @@ import org.apache.lucene.store.FSDirectory;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 public class Indexer {
   private IndexWriter indexWriter;
@@ -46,9 +47,10 @@ public class Indexer {
     indexWriter = null;
   }
 
-  private void indexWebDocument(WebDocument webDocument) throws IOException{
+  private void indexWebDocument(String id, WebDocument webDocument) throws IOException{
     IndexWriter writer = getIndexWriter();
     Document doc = new Document();
+    doc.add(new StringField("id", id, Field.Store.YES));
     doc.add(new StringField("title", webDocument.title, Field.Store.YES));
     doc.add(new StringField("url", webDocument.url, Field.Store.YES));
     doc.add(new StringField("author", webDocument.author, Field.Store.YES));
@@ -59,9 +61,11 @@ public class Indexer {
 
   public final void rebuildIndexes() throws IOException {
     DataFetcher dataFetcher = new DataFetcher();
-    List<WebDocument> documents = dataFetcher.readDocuments();
-    for (WebDocument document : documents) {
-      indexWebDocument(document);
+    HashMap<String, WebDocument> documents = dataFetcher.readDocuments();
+
+    //List<WebDocument> documents = dataFetcher.readDocuments();
+    for (Entry<String, WebDocument> document: documents.entrySet()) {
+      indexWebDocument(document.getKey(), document.getValue());
     }
     closeIndexWriter();
   }
