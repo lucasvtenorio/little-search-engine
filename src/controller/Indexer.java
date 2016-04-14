@@ -52,7 +52,6 @@ public class Indexer {
     doc.add(new StringField("title", webDocument.title, Field.Store.YES));
     doc.add(new StringField("url", webDocument.url, Field.Store.YES));
     doc.add(new StringField("author", webDocument.author, Field.Store.YES));
-    doc.add(new StringField("content", webDocument.content, Field.Store.YES));
     String fullSearchableText = webDocument.title + " " + webDocument.content;
     doc.add(new TextField("content", fullSearchableText, Field.Store.NO));
     writer.addDocument(doc);
