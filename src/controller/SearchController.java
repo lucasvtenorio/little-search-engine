@@ -1,27 +1,5 @@
 package controller;
 
-/*
-public class SearchEngine {
-    private IndexSearcher searcher = null;
-    private QueryParser parser = null;
-public SearchEngine() throws IOException {
-    searcher = new IndexSearcher(DirectoryReader.open(FSDirectory.open(new File("index-directory"))));
-    parser = new QueryParser("content", new StandardAnalyzer());
-    }
-
-public TopDocs performSearch(String queryString, int n)
-    throws IOException, ParseException {
-    Query query = parser.parse(queryString);
-    return searcher.search(query, n);
-    }
-
-public Document getDocument(int docId)
-    throws IOException {
-    return searcher.doc(docId);
-    }
-    }
- */
-
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.queryparser.classic.ParseException;

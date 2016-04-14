@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="gson-2.6.2">
+    <archive path="/Users/lucasvtenorio/IdeaProjects/RI/lib/gson-2.6.2.jar" />
+  </library>
+  <library name="lucene-analyzers-common-6.0.0">
+    <archive path="/Users/lucasvtenorio/IdeaProjects/RI/lib/lucene-analyzers-common-6.0.0.jar" />
+    <archive path="/Users/lucasvtenorio/IdeaProjects/RI/lib/lucene-core-6.0.0.jar" />
+    <archive path="/Users/lucasvtenorio/IdeaProjects/RI/lib/lucene-queries-6.0.0.jar" />
+    <archive path="/Users/lucasvtenorio/IdeaProjects/RI/lib/lucene-queryparser-6.0.0.jar" />
+  </library>
+</eclipse-userlibraries>
+
