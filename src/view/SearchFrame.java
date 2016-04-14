@@ -17,13 +17,13 @@ import java.net.URISyntaxException;
 
 
 public class SearchFrame extends JFrame implements DocumentListener {
-  private final SearchConfiguration searchConfiguration;
+  private final SearchConfiguration configuration;
   private JTextField entry;
   private JLabel status;
-  private JTextPane textArea;
+  private JTextPane resultsTextPane;
 
   public SearchFrame(String title, SearchConfiguration searchConfiguration) {
-    this.searchConfiguration = searchConfiguration;
+    this.configuration = searchConfiguration;
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setTitle(title);
     initComponents();
@@ -32,17 +32,13 @@ public class SearchFrame extends JFrame implements DocumentListener {
 
   private void initComponents() {
     entry = new JTextField();
-    textArea = new JTextPane();
+    resultsTextPane = new JTextPane();
     status = new JLabel();
     JLabel jLabel1 = new JLabel();
 
-//    textArea.setColumns(20);
-//    textArea.setLineWrap(false);
-//    textArea.setRows(20);
-//    textArea.setWrapStyleWord(true);
-    textArea.setEditable(false);
-    textArea.setContentType("text/html");
-    textArea.addHyperlinkListener(
+    resultsTextPane.setEditable(false);
+    resultsTextPane.setContentType("text/html");
+    resultsTextPane.addHyperlinkListener(
         (HyperlinkEvent e) -> {
           if(e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
             if(Desktop.isDesktopSupported()) {
@@ -56,7 +52,7 @@ public class SearchFrame extends JFrame implements DocumentListener {
           }
         });
 
-    JScrollPane jScrollPane1 = new JScrollPane(textArea);
+    JScrollPane jScrollPane1 = new JScrollPane(resultsTextPane);
 
     jLabel1.setText("Enter text to search:");
 
@@ -141,7 +137,7 @@ public class SearchFrame extends JFrame implements DocumentListener {
     }
 
     try {
-      SearchController searchEngine = new SearchController(searchConfiguration);
+      SearchController searchEngine = new SearchController(configuration);
       java.util.List<Document> results = searchEngine
           .performSearch(getQuery());
       StringBuilder stringBuilder = new StringBuilder();
@@ -168,7 +164,7 @@ public class SearchFrame extends JFrame implements DocumentListener {
     return entry.getText();
   }
   private void setResults(String results) {
-    textArea.setText(results);
+    resultsTextPane.setText(results);
   }
   private void message(String msg) {
     status.setText(msg);
